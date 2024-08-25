@@ -36,6 +36,13 @@ def execute(json_data):
 
 
 if __name__ == '__main__':
-    with open('rules.json', 'r') as file:
-        testcase_data = json.load(file)
-    execute(testcase_data)
+    parser = argparse.ArgumentParser(description="Script to apply rule actions on the mails.")
+    parser.add_argument("--json_path", type=str, help="Json file path containing set of rules of actions.",
+                        required=False, default='rules.json')
+    args = parser.parse_args()
+    json_file = args.json_path
+    if not json_file.endswith('.json'):
+        logger.warning("Please mention correct json path!!")
+    with open(json_file, 'r') as file:
+        json_data = json.load(file)
+    execute(json_data)

@@ -41,10 +41,10 @@ Code respository is defined in the below structure ,
    ```
 3. Execute the below scripts to simulate the rule engine flow.
     ```{console}
-    python3 src/scripts/mail_data_loader.py --flush True --limit 10
+    python3 src/script/mail_loader.py --flush True --limit 10
     ```
     ```{console}
-    python3 src/scripts/operations_executor.py --json <path/to/jsonfile/>
+    python3 src/script/operations_executor.py --json <path/to/jsonfile/>
     ```
 
 ## Author

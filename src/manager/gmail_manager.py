@@ -8,7 +8,7 @@ from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
-from src.config.base_config import LOG
+from src.config.base_config import LOG as logger
 
 SCOPES = ["https://www.googleapis.com/auth/gmail.modify"]
 
@@ -52,19 +52,21 @@ class GmailFetcher(GmailAuthenticator):
         req_result = self.service.users().messages().list(userId="me", maxResults=limit).execute()
         messages = req_result.get('messages', [])
         if len(messages) == 0:
-            LOG.info("No message fetched from the account.")
+            logger.info("No message fetched from the account.")
             return []
 
-        LOG.info(f"Retrieved message count: {len(messages)}")
+        logger.info(f"Retrieved message count: {len(messages)}")
         batch_req = self.service.new_batch_http_request()
         for msg in messages:
             batch_req.add(self.service.users().messages().get(userId="me", id=msg["id"]))
         batch_req.execute()
         batch_response = list(batch_req._responses.values())
         email_list = [json.loads(resp[1].decode()) for resp in batch_response]
-        LOG.info(f"Emails count: {len(email_list)}")
+        logger.info(f"Emails count: {len(email_list)}")
         return email_list
 
 
 if __name__ == '__main__':
-    records = GmailFetcher().fetch(10)
+    from pprint import pprint
+    records = GmailFetcher().fetch(1)
+    pprint(records[0])

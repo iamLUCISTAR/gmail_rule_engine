@@ -5,3 +5,4 @@ SQLAlchemy
 mysql-connector-python
 pymysql
 credentials
+cryptography

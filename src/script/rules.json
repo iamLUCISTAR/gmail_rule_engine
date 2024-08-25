@@ -1,0 +1,61 @@
+{
+    "operations": [
+        {
+            "rules": [
+                {
+                    "field": "from_mail",
+                    "predicate": "contains",
+                    "value": "noreply@redditmail.com"
+                },
+                {
+                    "field": "received_date",
+                    "predicate": "less_than",
+                    "value": "1 month"
+                }
+            ],
+            "condition": "all",
+            "action": [
+                "unread",
+                "category_social"
+            ]
+        },
+        {
+            "rules": [
+                {
+                    "field": "from_mail",
+                    "predicate": "contains",
+                    "value": "no-reply@swiggy.in"
+                },
+                {
+                    "field": "received_date",
+                    "predicate": "greater_than",
+                    "value": "1 week"
+                }
+            ],
+            "condition": "all",
+            "action": [
+                "read",
+                "starred"
+            ]
+        },
+        {
+            "rules": [
+                {
+                    "field": "from_mail",
+                    "predicate": "contains",
+                    "value": "no-reply@ncb.flipkart.com"
+                },
+                {
+                    "field": "from_mail",
+                    "predicate": "contains",
+                    "value": "amazon@amazon.com"
+                }
+            ],
+            "condition": "any",
+            "action": [
+                "read",
+                "category_forums"
+            ]
+        }
+    ]
+}

@@ -2,7 +2,7 @@
 Script to apply rule actions on the mails stored in db.
 Perform actions on the filtered mails via API call to Gmail API services.
 
-Run command: python3 src/scripts/operations_executor.py --json <path/to/jsonfile/>
+Run command: python3 src/script/operations_executor.py --json <path/to/jsonfile/>
 params: json:- path to json file in which rules and conditions are specified
 """
 

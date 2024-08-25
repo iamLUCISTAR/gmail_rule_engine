@@ -45,7 +45,6 @@ class Predicate:
     def greater_than(self, key, value, **kwargs):
         args = {kwargs["time_entity"]: value}
         bound_range = datetime.now().today() - timedelta(**args)
-        print("******", bound_range, timedelta(**args))
         return key < bound_range
 
     def contains(self, key, value, **kwargs):

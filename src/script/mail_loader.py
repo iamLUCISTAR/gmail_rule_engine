@@ -2,7 +2,7 @@
 Script to fetch the mails using Gmail API.
 Load the fetched data from the API to locally running db instance.
 
-Run command: python3 src/scripts/mail_data_loader.py --flush True --limit 10
+Run command: python3 src/script/mail_loader.py --flush True --limit 10
 params: flush:- to drop the created table and recreate the table
         limit:- count limit to fetch from the Gmail API
 """
@@ -16,18 +16,18 @@ from src.entity.email_entity import EmailMasterEntity
 from src.manager.gmail_manager import GmailFetcher
 
 
-def execute(limit: int, flush: bool):
+def execute(limit: int, clear: bool):
     """
     Function to fetch the mail data via Gmail API and load it in the db.
     :param limit
-    :param flush
+    :param clear
     :returns None
     """
     db_obj = None
     try:
         records = GmailFetcher().fetch(limit)
         logger.info(f"Email records fetched: {len(records)}")
-        if flush:
+        if clear:
             clean_db()
         db_obj = DBManager(SQL_ENGINE)
         for record in records:
@@ -61,9 +61,9 @@ def execute(limit: int, flush: bool):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Script to fetch and load emails in the db.")
-    parser.add_argument("--flush", type=bool, help="Specify True/False to clean the db",
+    parser.add_argument("--clear", type=bool, help="Specify True/False to clean the db",
                         required=False, default=False)
-    parser.add_argument("--limit", type=int, help="Enter mail fetch limit. Default limit 500",
+    parser.add_argument("--limit", type=int, help="Enter mail fetch limit. Default limit 100",
                         required=False, default=FETCH_LIMIT)
     args = parser.parse_args()
-    execute(args.limit, args.flush)
+    execute(args.limit, args.clear)

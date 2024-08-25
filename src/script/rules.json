@@ -1,0 +1,17 @@
+{
+    "operations": [
+        {
+            "rules": [
+                {
+                    "field": "received_date",
+                    "predicate": "less_than",
+                    "value": "1 day"
+                }
+            ],
+            "condition": "any",
+            "action": [
+                "unread"
+            ]
+        }
+    ]
+}

@@ -1,5 +1,5 @@
 """
-Entity object to process data received from Gmail Api for storing in the db.
+Entity classes to process data received from Gmail Api for storing in the db.
 """
 import base64
 from datetime import datetime
@@ -7,7 +7,7 @@ from datetime import datetime
 
 class EmailMasterEntity(object):
     """
-    Class for defining the getters and setters of email parameters
+    Class for defining the getters and setters of email parameters.
     """
     def __init__(self, raw_data):
         self._data = raw_data

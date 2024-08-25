@@ -66,6 +66,18 @@ class GmailFetcher(GmailAuthenticator):
         return email_list
 
 
+class GmailActionExecutor(GmailAuthenticator):
+    """
+    Gmail action performer
+    """
+    def perform(self, payload):
+        """
+        Fetches all type of mails from the gmail
+        """
+        request = (self.service.users().messages().batchModify(userId="me", body=payload))
+        request.execute()
+
+
 if __name__ == '__main__':
     from pprint import pprint
     records = GmailFetcher().fetch(1)

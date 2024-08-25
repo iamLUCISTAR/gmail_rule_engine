@@ -12,6 +12,7 @@ LOG = logging.getLogger("gmail_rule_engine")
 # db configs
 DB_URL = "mysql+pymysql://root:localinstance@localhost:3306/mailengine"
 SQL_ENGINE = create_engine(DB_URL)
+FETCH_LIMIT = 100
 
 # rule engine configs
 TIME_ENTITIES = ["day", "week", "month", "days", "weeks", "months"]

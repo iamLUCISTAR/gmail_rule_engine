@@ -8,7 +8,8 @@ params: flush:- to drop the created table and recreate the table
 """
 
 import sqlalchemy
-from src.config.base_config import SQL_ENGINE, LOG as logger
+import argparse
+from src.config.base_config import SQL_ENGINE, LOG as logger, FETCH_LIMIT
 from src.dao.models import EmailMaster, clean_db
 from src.dao.dao_manager import DBManager
 from src.entity.email_entity import EmailMasterEntity
@@ -59,4 +60,10 @@ def execute(limit: int, flush: bool):
 
 
 if __name__ == '__main__':
-    execute(20,  True)
+    parser = argparse.ArgumentParser(description="Script to fetch and load emails in the db.")
+    parser.add_argument("--flush", type=bool, help="Specify True/False to clean the db",
+                        required=False, default=False)
+    parser.add_argument("--limit", type=int, help="Enter mail fetch limit. Default limit 500",
+                        required=False, default=FETCH_LIMIT)
+    args = parser.parse_args()
+    execute(args.limit, args.flush)

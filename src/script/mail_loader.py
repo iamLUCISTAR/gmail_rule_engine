@@ -2,7 +2,7 @@
 Script to fetch the mails using Gmail API.
 Load the fetched data from the API to locally running db instance.
 
-Run command: python3 src/script/mail_loader.py --flush True --limit 10
+Run command: python3 src/script/mail_loader.py --clear True --limit 10
 params: flush:- to drop the created table and recreate the table
         limit:- count limit to fetch from the Gmail API
 """

@@ -3,9 +3,10 @@ Python intergration with Gmail API to perform some rule based operations on emai
 
 ## DB design
 
+
 A simple single table is enough to store the fetched mails from Gmail API services.
 
-![alt text](https://github.com/iamLUCISTAR/gmail_rule_engine/design/table_schema.png?raw=true)
+![Screenshot 2024-08-25 at 4 24 17 PM](https://github.com/user-attachments/assets/23d87751-c08a-41c9-b3bb-11d71f516f89)
 
 ## Code
 
